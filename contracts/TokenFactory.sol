@@ -16,13 +16,13 @@ contract TokenFactory is Ownable {
         uint256 _initialSupply,
         string calldata _name,
         string calldata _symbol) external onlyOwner() returns (address){
-            Token newToken = (new Token(_initialSupply,_name, _symbol));
+            Token newToken = (new Token(_initialSupply, _name, _symbol));
             Tokens.push(address(newToken));
             TokenCount++;
             newToken.transferOwnership(msg.sender);
             newToken.transfer(msg.sender, _initialSupply);
             return address(newToken);
-        }
+    }
 
     function totalTokenCount() public view returns (uint256) {
         return TokenCount;
